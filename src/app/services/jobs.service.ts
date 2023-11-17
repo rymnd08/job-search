@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from '../../assets/environment/environment';
 import { GoogleAuthProvider, getAuth, signInWithPopup   } from "firebase/auth";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,10 @@ export class JobsService {
   constructor() { }
 
   googleSignIn(){
+    const router = inject(Router)
     signInWithPopup(this.auth, this.provider)
     .then((result) => {
+      router.navigate(['/main'])
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential!.accessToken;

@@ -1,6 +1,6 @@
 <div class="flex justify-center items-center h-screen bg-gradient-to-r from-blue-300 to-emerald-500">
-    <div class="border min-h-[450px] rounded p-6 w-[400px] shadow-md bg-white">
-        <h1 class="text-2xl font-semibold mb-6">Login</h1>
+    <div class="border  rounded p-6 w-[400px] shadow-md bg-white">
+        <h1 class="text-3xl font-semibold mb-6">Login</h1>
         <form [formGroup] ="LoginForm" action="" class="mb-6" (ngSubmit)="formSubmit()">
             <div class="inline-grid w-full gap-1 mb-6">
                 <label for="" class="text-lg">Email</label>
@@ -26,8 +26,8 @@
             </div>
             <button type="submit" class="w-full bg-blue-500 text-white font-semibold rounded py-1 hover:bg-blue-700 disabled:bg-blue-400" [disabled]="LoginForm.invalid">Login</button>
         </form>
-        <div class="text-center mb-6">
-            <button type="button">Sign in with Google <i class="bi bi-google " (click)="loginUsingGoogle()"></i></button> 
+        <div class="text-center mb-2">
+            <button type="button" (click)="loginUsingGoogle()">Sign in with Google <i class="bi bi-google " ></i></button> 
         </div>
         <div class="text-center">
             <h3>Create account?</h3>

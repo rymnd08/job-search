@@ -8,7 +8,6 @@ import { RegisterComponent } from './pages/register/register.component';
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'main', component: MainComponent, canActivate: [authGuard]},
-
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'access-denied', component: AccessDeniedComponent},
