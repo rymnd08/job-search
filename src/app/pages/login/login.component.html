@@ -1,9 +1,5 @@
-<div class="flex justify-center items-center h-screen ">
-<pre>{{ LoginForm.value | json }}</pre>
-<pre>{{ password?.errors| json }}</pre>
-<pre>{{ LoginForm.valid }}</pre>
-
-    <div class="border min-h-[450px] rounded p-6 w-[400px] shadow-md">
+<div class="flex justify-center items-center h-screen bg-gradient-to-r from-blue-300 to-emerald-500">
+    <div class="border min-h-[450px] rounded p-6 w-[400px] shadow-md bg-white">
         <h1 class="text-2xl font-semibold mb-6">Login</h1>
         <form [formGroup] ="LoginForm" action="" class="mb-6" (ngSubmit)="formSubmit()">
             <div class="inline-grid w-full gap-1 mb-6">
@@ -31,7 +27,7 @@
             <button type="submit" class="w-full bg-blue-500 text-white font-semibold rounded py-1 hover:bg-blue-700 disabled:bg-blue-400" [disabled]="LoginForm.invalid">Login</button>
         </form>
         <div class="text-center mb-6">
-            <button type="button">Login using Google <i class="bi bi-google text-blue-600"></i></button> 
+            <button type="button">Sign in with Google <i class="bi bi-google " (click)="loginUsingGoogle()"></i></button> 
         </div>
         <div class="text-center">
             <h3>Create account?</h3>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { JobsService } from '../../services/jobs.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class LoginComponent implements OnInit {
   isCheck = false
   LoginForm! : FormGroup
-  constructor(private fb : FormBuilder){}
+  constructor(private fb : FormBuilder, private jobFb : JobsService){}
 
   ngOnInit(): void {
     this.LoginForm = this.fb.group({
@@ -32,6 +33,10 @@ export class LoginComponent implements OnInit {
   }
   get password(){
     return this.LoginForm.get('password')
+  }
+
+  loginUsingGoogle(){
+    this.jobFb.googleSignIn()
   }
   
 }
