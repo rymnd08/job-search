@@ -1,0 +1,42 @@
+<div class="flex justify-center items-center h-screen ">
+<pre>{{ LoginForm.value | json }}</pre>
+<pre>{{ password?.errors| json }}</pre>
+<pre>{{ LoginForm.valid }}</pre>
+
+    <div class="border min-h-[450px] rounded p-6 w-[400px] shadow-md">
+        <h1 class="text-2xl font-semibold mb-6">Login</h1>
+        <form [formGroup] ="LoginForm" action="" class="mb-6" (ngSubmit)="formSubmit()">
+            <div class="inline-grid w-full gap-1 mb-6">
+                <label for="" class="text-lg">Email</label>
+                <input type="email" placeholder="Your email" class="w-full focus:outline-none border-b-2 border-b-slate-800 p-1 focus:border-b-blue-500" name="email" formControlName="email">
+                <!-- error messages -->
+                <ng-container *ngIf="email?.invalid &&  email?.touched">
+                    <small *ngIf="email?.errors?.['email'] " class="text-red-500">Email is invalid</small>
+                    <small *ngIf="email?.errors?.['required'] " class="text-red-500">Email is required</small>
+                </ng-container>
+            </div>
+            <div class="inline-grid w-full mb-6">
+                <label for="" class="text-lg">Password</label>
+                <input [type]="isCheck ? 'text' : 'password' " placeholder="Your password" class="w-full focus:outline-none border-b-2 border-b-slate-800 p-1 focus:border-b-blue-500" name="password" formControlName="password">
+                <!-- error messages -->
+                <ng-container *ngIf="email?.invalid &&  password?.touched">
+                    <small *ngIf="password?.errors?.['required']" class="text-red-500">Password is required</small>
+                    <small *ngIf="password?.errors?.['minlength']" class="text-red-500">Password must be 6 characters</small>
+                </ng-container>
+                <div class="inline-flex gap-2">
+                    <label for="show">Show password</label>
+                    <input type="checkbox"  id="show" (change)="isCheck = !isCheck" >
+                </div>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white font-semibold rounded py-1 hover:bg-blue-700 disabled:bg-blue-400" [disabled]="LoginForm.invalid">Login</button>
+        </form>
+        <div class="text-center mb-6">
+            <button type="button">Login using Google <i class="bi bi-google text-blue-600"></i></button> 
+        </div>
+        <div class="text-center">
+            <h3>Create account?</h3>
+            <a routerLink="/register" class="text-blue-700 hover:cursor-pointer" >Click here</a>
+        </div>
+
+    </div>
+</div>
