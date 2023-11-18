@@ -10,5 +10,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './nav.component.css'
 })
 export class NavComponent {
-
+  activeClass = 'border-b-2 border-b-blue-800 rounded-none text-blue-500'
 }

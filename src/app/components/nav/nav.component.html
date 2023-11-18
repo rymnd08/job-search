@@ -4,10 +4,31 @@
             <a routerLink="/main" class="text-blue-800 hover:text-blue-500">Site Name</a>
         </div>
         <ul class="inline-flex mx-4 md:mx-4 gap-5 md:gap-3">
-            <li><a routerLink="/main"><span class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white px-3 py-1 rounded-full">Home</span> <i class="bi bi-house-fill text-xl md:hidden text-blue-800 hover:text-blue-500"></i></a></li>
-            <li><a routerLink=""><span class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white px-3 py-1 rounded-full">Notifications</span><i class="bi bi-bell-fill text-xl md:hidden text-blue-800 hover:text-blue-500"></i></a></li>
-            <li><a routerLink=""><span class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white px-3 py-1 rounded-full">Messages</span><i class="bi bi-chat-dots-fill text-xl md:hidden text-blue-800 hover:text-blue-500"></i></a></li>
-            <li><a routerLink=""><span class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white px-3 py-1 rounded-full">Account</span><i class="bi bi-person-fill-gear text-xl md:hidden text-blue-800 hover:text-blue-500"></i></a></li>
+            <li>
+                <a routerLink="/main" >
+                    <span [routerLinkActive]="activeClass" class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white px-3 py-1 rounded-full" 
+                    >Home</span> 
+                    <i class="bi bi-house-fill text-xl md:hidden text-blue-800 hover:text-blue-500" title="Home" routerLinkActive="text-blue-500"></i>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/notif" >
+                    <span [routerLinkActive]="activeClass" class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white px-3 py-1 rounded-full">Notifications</span>
+                    <i class="bi bi-bell-fill text-xl md:hidden text-blue-800 hover:text-blue-500" title="Notifications" routerLinkActive="text-blue-500"></i>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/messages" >
+                    <span [routerLinkActive]="activeClass" class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white px-3 py-1 rounded-full">Messages</span>
+                    <i class="bi bi-chat-dots-fill text-xl md:hidden text-blue-800 hover:text-blue-500" title="Messages" routerLinkActive="text-blue-500"></i>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/account" >
+                    <span [routerLinkActive]="activeClass" class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white px-3 py-1 rounded-full">Account</span>
+                    <i class="bi bi-person-fill-gear text-xl md:hidden text-blue-800 hover:text-blue-500" title="Account" routerLinkActive="text-blue-500"></i>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
