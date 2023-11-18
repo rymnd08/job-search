@@ -1,5 +1,5 @@
-<app-nav></app-nav>
-<div class="max-w-5xl mx-auto mt-6 px-2 md:px-0">
+<app-nav class="sticky top-0 z-50 "></app-nav>
+<div class="max-w-5xl mx-auto mt-6 px-2 md:px-0 z-30">
     <app-search-jobs (searchVal)="searchValue($event)"></app-search-jobs>
     <p class="mt-2">  {{'Entries: ' +  jobsData().length}}</p>
     <div class="grid grid-cols-1 lg:grid-cols-2 mt-10 gap-10">
