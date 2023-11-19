@@ -2,9 +2,9 @@
 <div class="max-w-5xl mx-auto mt-6 px-2 md:px-0 z-30">
     <app-search-jobs (searchVal)="searchValue($event)"></app-search-jobs>
     <p class="mt-2">  {{'Entries: ' +  jobsData().length}}</p>
-    <div class="grid grid-cols-1 lg:grid-cols-2 mt-10 gap-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 mt-6 gap-10">
         @for (job of jobsData(); track $index) {
-            <a routerLink="/main/{{job.id}}">
+            <a routerLink="/view-job/{{job.id}}">
                 <app-card>
                     <p id="title">{{job.position}}</p>
                     <span id="company">{{job.company}}</span>
@@ -15,9 +15,12 @@
                             <li class="bg-emerald-200 px-2 rounded-full text-emerald-950">{{tag}}</li>
                         }
                     </ul>
-                    <p id="description">{{job.description}}</p>
+                    <p id="description" class="text-sm">{{job.description}}</p>
                 </app-card>
             </a>
+        }
+        @empty {
+            <h1 class="text-lg">No job/s found 😔</h1>
         }
     </div>
 </div>

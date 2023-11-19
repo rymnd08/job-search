@@ -10,7 +10,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 export const routes: Routes = [
     {path: '', redirectTo: 'main', pathMatch: 'full'},
     {path: 'main', component: MainComponent, canActivate: [authGuard]},
-    {path: 'main/:id', component: ViewJobComponent},
+    {path: 'view-job/:id', component: ViewJobComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'access-denied', component: AccessDeniedComponent},

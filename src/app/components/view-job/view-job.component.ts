@@ -14,9 +14,7 @@ import { sampleData } from '../../pages/main/sampledata';
 export class ViewJobComponent implements OnInit {
 
   jobData : any
-
   route = inject(ActivatedRoute)
-
   ngOnInit(): void {
 
     this.getParams()
