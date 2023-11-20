@@ -10,7 +10,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   if(shared.getuserLoginState()){
     return true
   }else{
-    router.navigate(['/login'])
+    router.navigate(['/access-denied'])
     return false
   }
 

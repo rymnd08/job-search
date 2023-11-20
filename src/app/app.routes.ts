@@ -8,6 +8,7 @@ import { ViewJobComponent } from './components/view-job/view-job.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { NotificationComponent } from './pages/notification/notification.component';
 import { MessagesComponent } from './pages/messages/messages.component';
+import { AccountComponent } from './pages/account/account.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'main', pathMatch: 'full'},
@@ -18,5 +19,6 @@ export const routes: Routes = [
     {path: 'access-denied', component: AccessDeniedComponent},
     {path: 'notif', component: NotificationComponent, canActivate : [authGuard]},
     {path: 'messages', component: MessagesComponent, canActivate : [authGuard]},
+    {path: 'account', component: AccountComponent, canActivate : [authGuard]},
     {path: '**', component: PageNotFoundComponent},
 ];

@@ -31,20 +31,26 @@
                     <i class="bi bi-chat-dots-fill text-xl md:hidden text-blue-800 hover:text-blue-500" title="Messages" routerLinkActive="text-blue-500"></i>
                 </a>
             </li>
+            <li>
+                <a routerLink="/account">
+                    <span [routerLinkActive]="activeClass" class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white px-3 py-1 rounded-full">Account</span>
+                    <i class="bi bi-person-fill-gear text-xl md:hidden text-blue-800 hover:text-blue-500" title="Account" routerLinkActive="text-blue-500"></i>
+                </a>
+            </li>
             
             <!-- Render if user login  -->
             @if (!isUserLogin()) {
                 <li>
                     <a routerLink="/login">
                         <span [routerLinkActive]="activeClass" class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white px-3 py-1 rounded-full">Login</span>
-                        <i class="bi bi-person-fill-gear text-xl md:hidden text-blue-800 hover:text-blue-500" title="Account" routerLinkActive="text-blue-500"></i>
+                        <i class="bi bi-box-arrow-in-right text-xl md:hidden text-blue-800 hover:text-blue-500" title="Account" routerLinkActive="text-blue-500"></i>
                     </a>
                 </li>
             }@else {
                 <li>
                     <button type="button" (click)="logOut()">
-                        <span [routerLinkActive]="activeClass" class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white px-3 py-1 rounded-full">Account | Logout</span>
-                        <i class="bi bi-person-fill-gear text-xl md:hidden text-blue-800 hover:text-blue-500" title="Account" routerLinkActive="text-blue-500"></i>
+                        <span [routerLinkActive]="activeClass" class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white px-3 py-1 rounded-full">Logout</span>
+                        <i class="bi bi-box-arrow-right text-xl md:hidden text-blue-800 hover:text-blue-500" title="Account" routerLinkActive="text-blue-500"></i>
                     </button>
                 </li>
             }

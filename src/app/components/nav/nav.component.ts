@@ -16,7 +16,7 @@ export class NavComponent implements OnInit  {
   activeClass = 'border-b-2 border-b-blue-800 rounded-none text-blue-500'
   userEmail  = signal('')
   isUserLogin  = signal(false)
-  
+
   constructor(private shared : SharedService){}
   ngOnInit(): void {
     this.getCurrentUser()
@@ -25,6 +25,7 @@ export class NavComponent implements OnInit  {
   logOut(){
     this.shared.deleteCookie('userInfo')
     this.userEmail.set('')
+    this.isUserLogin  = signal(false)
   }
 
   getCurrentUser(){
