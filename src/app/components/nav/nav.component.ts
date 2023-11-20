@@ -11,6 +11,7 @@ import { SharedService } from '../../services/shared.service';
   styleUrl: './nav.component.css'
 })
 
+
 export class NavComponent implements OnInit  {
 
   activeClass = 'border-b-2 border-b-blue-800 rounded-none text-blue-500'
@@ -29,13 +30,14 @@ export class NavComponent implements OnInit  {
   }
 
   getCurrentUser(){
-    try{
-      const userInfo = JSON.parse(this.shared.getCookie('userInfo'))
-      if(userInfo){
+    this.shared.getCurrentUser()
+      .then((res) =>{
         this.isUserLogin.set(true)
-        this.userEmail.set(userInfo.email)
-      }
-    }catch(err){}
+        this.userEmail.set(res.email)
+      })
+      .catch(err =>{
+        console.error(err)
+      })
   }
 
 }

@@ -1,6 +1,6 @@
 import { Injectable, signal} from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-
+import { userInfo } from './IuserInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -22,12 +22,26 @@ export class SharedService {
   }
   
   getuserLoginState(){
-    try{
-      const userInfo  = JSON.parse(this.cookie.get('userInfo'))
-      return userInfo ? true : false
-    }catch(err){
+    if(this.cookie.get('userInfo')){
+      return true
+    }else{
       return false
     }
+  }
+
+  getCurrentUser(){
+    return new Promise<userInfo>((resolve, reject)=>{
+      try{
+        const userInfo = JSON.parse(this.cookie.get('userInfo'))
+        if(userInfo){
+          resolve(userInfo)
+        }else{
+          reject('Not login')
+        }
+      }catch(err){
+        reject('Not login')
+      }
+    })
   }
 
 

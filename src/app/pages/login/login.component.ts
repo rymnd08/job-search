@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
         this.shared.setCookie('userInfo', JSON.stringify(userInfo))
 
         this.alert = true
-        this.alertMessage = 'Account created successfully'
+        this.alertMessage = 'Login Successfully'
         this.alertColor = 'bg-slate-300'
 
         setTimeout(()=> this.router.navigate(['/main']), 2000)
@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
       this.shared.setCookie('userInfo', JSON.stringify(userInfo))
 
       this.alert = true
-      this.alertMessage = 'Account created successfully'
+      this.alertMessage = 'Login Successfully'
       this.alertColor = 'bg-slate-300'
 
       setTimeout(()=> this.router.navigate(['/main']), 2000)
