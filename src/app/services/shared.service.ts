@@ -1,4 +1,4 @@
-import { Injectable} from '@angular/core';
+import { Injectable, signal} from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 
 
@@ -6,7 +6,6 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class SharedService {
-
 
   constructor(private cookie : CookieService) {}
 
@@ -16,6 +15,19 @@ export class SharedService {
 
   getCookie(key: string){
     return this.cookie.get(key)
+  }
+
+  deleteCookie(key: string){
+    this.cookie.delete(key)
+  }
+  
+  getuserLoginState(){
+    try{
+      const userInfo  = JSON.parse(this.cookie.get('userInfo'))
+      return userInfo ? true : false
+    }catch(err){
+      return false
+    }
   }
 
 

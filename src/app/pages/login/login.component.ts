@@ -45,11 +45,8 @@ export class LoginComponent implements OnInit {
 
         this.LoginForm.reset()
         this.shared.setCookie('userInfo', JSON.stringify(userInfo))
+        setTimeout(()=> this.router.navigate(['/main']), 1000)
 
-        setTimeout(()=>{
-          this.router.navigate(['/main'])
-        },1000)
-        
       })
       .catch(err =>{
         console.log(err.message)
