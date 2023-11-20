@@ -15,7 +15,7 @@ export class RegisterComponent {
   isCheck = false
   RegForm! : FormGroup
   alert = false
-  alertColor = ''
+  alertColor = 'bg-slate-300'
   alertMessage = ''
 
   constructor(private fb : FormBuilder, private jobFb : JobsService, private route : ActivatedRoute, private router : Router){}
@@ -36,7 +36,6 @@ export class RegisterComponent {
         this.alertMessage = 'Account created successfully'
         this.alertColor = 'bg-slate-300'
         setTimeout(()=>{
-          this.alert = !this.alert
           this.router.navigate(['/login'])
         },2500)
       })

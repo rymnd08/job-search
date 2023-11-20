@@ -17,7 +17,8 @@ export class LoginComponent implements OnInit {
   isCheck = false
   LoginForm! : FormGroup
   alert = false
-  alertMsg = ''
+  alertMessage = ''
+  alertColor = ''
 
   constructor(private fb : FormBuilder, private jobFb : JobsService, private router: Router, private shared : SharedService){}
 
@@ -33,7 +34,6 @@ export class LoginComponent implements OnInit {
     this.jobFb.login(this.email?.value, this.password?.value)
       .then(userCred =>{
         const user = userCred.user
-
         const userInfo = {
           uid : user.uid,
           email : user.email,
@@ -45,12 +45,18 @@ export class LoginComponent implements OnInit {
 
         this.LoginForm.reset()
         this.shared.setCookie('userInfo', JSON.stringify(userInfo))
-        setTimeout(()=> this.router.navigate(['/main']), 1000)
+
+        this.alert = true
+        this.alertMessage = 'Account created successfully'
+        this.alertColor = 'bg-slate-300'
+
+        setTimeout(()=> this.router.navigate(['/main']), 2000)
 
       })
       .catch(err =>{
-        console.log(err.message)
-        console.log(err.code)
+        this.alert = true
+        this.alertColor = 'bg-rose-300'
+        this.alertMessage = err.code
       })
   }
 
@@ -77,12 +83,17 @@ export class LoginComponent implements OnInit {
       
       this.LoginForm.reset()
       this.shared.setCookie('userInfo', JSON.stringify(userInfo))
-      setTimeout(()=> this.router.navigate(['/main']), 1000)
 
-    }).catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage, errorCode)
+      this.alert = true
+      this.alertMessage = 'Account created successfully'
+      this.alertColor = 'bg-slate-300'
+
+      setTimeout(()=> this.router.navigate(['/main']), 2000)
+
+    }).catch((err) => {
+      this.alert = true
+      this.alertColor = 'bg-rose-300'
+      this.alertMessage = err.code
     });
   }
   

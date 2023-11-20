@@ -10,5 +10,5 @@ import { NavComponent } from '../../components/nav/nav.component';
   styleUrl: './messages.component.css'
 })
 export class MessagesComponent {
-
+  
 }
