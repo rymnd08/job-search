@@ -19,8 +19,14 @@ export class NavComponent implements OnInit  {
   }
 
   ngOnInit(): void {
-    const userInfo = JSON.parse(this.shared.getSession('userInfo')!)
+    this.getCurrentUser()    
+  }
+
+  getCurrentUser(){
+    const userString = this.shared.getCookie('userInfo')
+    const userInfo = JSON.parse(userString)
     console.log(userInfo)
+    this.userEmail = userInfo.email
   }
 
 

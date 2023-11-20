@@ -1,7 +1,14 @@
 <div class=" shadow-md bg-white">
     <div class="flex justify-between py-4">
         <div class=" mx-4">
-            <a routerLink="/main" class="text-blue-800 hover:text-blue-500">Site Name</a>
+            <a routerLink="/main" class="text-blue-800 hover:text-blue-500">
+                @if (userEmail) {
+                    {{userEmail}}
+                }
+                @else {
+                    Site name
+                }
+            </a>
         </div>
         <ul class="inline-flex mx-4 md:mx-4 gap-5 md:gap-3">
             <li>

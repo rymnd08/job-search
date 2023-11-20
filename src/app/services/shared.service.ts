@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Injectable({
@@ -6,17 +7,16 @@ import { Injectable } from '@angular/core';
 })
 export class SharedService {
 
-  userInfo : any
-  private session = sessionStorage
 
-  constructor() {}
+  constructor(private cookie : CookieService) {}
 
-  setSession(key : string, value : string){
-    this.session.setItem(key, value)
+  setCookie(key : string, value : string){
+    this.cookie.set(key, value)
   }
 
-  getSession(key: string){
-    return this.session.getItem(key)
+  getCookie(key: string){
+    return this.cookie.get(key)
   }
+
 
 }

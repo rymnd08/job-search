@@ -44,11 +44,12 @@ export class LoginComponent implements OnInit {
         }
 
         this.LoginForm.reset()
-        this.shared.setSession('userInfo', JSON.stringify(userInfo))
+        this.shared.setCookie('userInfo', JSON.stringify(userInfo))
 
         setTimeout(()=>{
           this.router.navigate(['/main'])
         },1000)
+        
       })
       .catch(err =>{
         console.log(err.message)
@@ -78,12 +79,8 @@ export class LoginComponent implements OnInit {
       }
       
       this.LoginForm.reset()
-      this.shared.setSession('userInfo', JSON.stringify(userInfo))
-
+      this.shared.setCookie('userInfo', JSON.stringify(userInfo))
       setTimeout(()=> this.router.navigate(['/main']), 1000)
-
-      
-
 
     }).catch((error) => {
       const errorCode = error.code;
