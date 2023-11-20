@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
 })
 export class MainComponent implements OnInit {
   jobsData : any = signal([])
-
+  kape = ''
   constructor(){}
   ngOnInit(): void {
     this.jobsData.set(sampleData)
