@@ -28,6 +28,7 @@ export class NavComponent implements OnInit  {
     this.userEmail.set('')
     this.isUserLogin  = signal(false)
     this.router.navigate(['/main'])
+    this.showDropdown = false
   }
 
   getCurrentUser(){
