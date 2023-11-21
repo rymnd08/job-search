@@ -17,9 +17,12 @@ import { sampleData } from '../main/sampledata';
 })
 
 export class ViewTagComponent extends MainComponent implements OnInit {
-   jobs: any = signal([])
+  params? : string
+  jobs: any = signal([])
+  
   override ngOnInit(): void {
     const params = this.route.snapshot.params['tag']
+    this.params = params
     this.jobs.set(sampleData)
     const data = this.jobs()
     const filtered = data.filter((job: any) => {
