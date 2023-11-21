@@ -18,17 +18,16 @@ import { sampleData } from '../main/sampledata';
 
 export class ViewTagComponent extends MainComponent implements OnInit {
   params? : string
-  jobs: any = signal([])
   
   override ngOnInit(): void {
     const params = this.route.snapshot.params['tag']
     this.params = params
-    this.jobs.set(sampleData)
-    const data = this.jobs()
+    this.jobsData.set(sampleData)
+    const data = this.jobsData()
     const filtered = data.filter((job: any) => {
       return job['tags'].includes(params) || job['salary'] == params
     });
-    this.jobs.set(filtered)
+    this.jobsData.set(filtered)
   }
 
 }
