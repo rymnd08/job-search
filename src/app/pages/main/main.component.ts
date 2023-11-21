@@ -28,7 +28,6 @@ export class MainComponent implements OnInit {
   }
   navigateTag(tag: string){
     this.router.navigate(['/main/' + tag])
-    console.log(this.route)
   }
 
   searchValue(val: string){

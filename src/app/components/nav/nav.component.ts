@@ -37,9 +37,7 @@ export class NavComponent implements OnInit  {
         this.isUserLogin.set(true)
         this.userEmail.set(res.email)
       })
-      .catch(err =>{
-        console.error(err)
-      })
+      .catch(err =>{})
   }
 
 }
