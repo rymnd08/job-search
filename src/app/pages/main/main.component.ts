@@ -31,11 +31,15 @@ export class MainComponent implements OnInit {
     console.log(this.route)
   }
 
-
   searchValue(val: string){
     const regex = new RegExp(val, 'i')
     const filtered = sampleData.filter((obj: any) =>{
-      return regex.test(obj['position']) || regex.test(obj['company']) || regex.test(obj['salary']) || regex.test(obj['description']) || regex.test(obj['tags']) || regex.test(obj['location'])
+      return regex.test(obj['position']) || 
+      regex.test(obj['company']) || 
+      regex.test(obj['salary']) || 
+      regex.test(obj['description']) || 
+      regex.test(obj['tags']) || 
+      regex.test(obj['location'])
     })
     this.jobsData.set(filtered)
   }

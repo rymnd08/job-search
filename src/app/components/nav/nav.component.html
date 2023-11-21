@@ -19,6 +19,8 @@
                     <i class="bi bi-house-fill text-xl md:hidden text-blue-800 hover:text-blue-500" title="Home" routerLinkActive="text-blue-500"></i>
                 </a>
             </li>
+
+
             <li>
                 <a routerLink="/notif" >
                     <span [routerLinkActive]="activeClass" class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white px-3 py-1 rounded-full">Notifications</span>
@@ -31,11 +33,28 @@
                     <i class="bi bi-chat-dots-fill text-xl md:hidden text-blue-800 hover:text-blue-500" title="Messages" routerLinkActive="text-blue-500"></i>
                 </a>
             </li>
-            <li>
-                <a routerLink="/account">
+            <li class="relative">
+                <button (click)="showDropdown = !showDropdown">
                     <span [routerLinkActive]="activeClass" class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white px-3 py-1 rounded-full">Account</span>
                     <i class="bi bi-person-fill-gear text-xl md:hidden text-blue-800 hover:text-blue-500" title="Account" routerLinkActive="text-blue-500"></i>
-                </a>
+                </button>
+                @if(showDropdown){
+                    <div class="min-w-full absolute bottom-0 right-0 translate-y-[110%] bg-white border rounded">
+                        <ul class="py-2">
+                            <li class="px-2 py-1 text-md hover:bg-blue-800 hover:text-white ">
+                                <a routerLink="/account" class="flex gap-2">
+                                     Settings <i class="bi bi-gear text-md "></i>
+                                </a></li>
+                            @if (isUserLogin()) {
+                                <li class="px-2 py-1 text-md hover:bg-blue-800 hover:text-white ">
+                                    <button type="button" (click)="logOut()" class="flex gap-2">
+                                         Logout <i class="bi bi-box-arrow-right text-md "></i>
+                                    </button>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
             </li>
             
             <!-- Render if user login  -->
@@ -46,14 +65,15 @@
                         <i class="bi bi-box-arrow-in-right text-xl md:hidden text-blue-800 hover:text-blue-500" title="Account" routerLinkActive="text-blue-500"></i>
                     </a>
                 </li>
-            }@else {
+            }
+            <!-- @else {
                 <li>
                     <button type="button" (click)="logOut()">
                         <span [routerLinkActive]="activeClass" class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white px-3 py-1 rounded-full">Logout</span>
                         <i class="bi bi-box-arrow-right text-xl md:hidden text-blue-800 hover:text-blue-500" title="Account" routerLinkActive="text-blue-500"></i>
                     </button>
                 </li>
-            }
+            } -->
 
         </ul>
     </div>

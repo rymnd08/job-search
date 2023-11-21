@@ -13,7 +13,7 @@ import { SharedService } from '../../services/shared.service';
 
 
 export class NavComponent implements OnInit  {
-
+  showDropdown = false
   activeClass = 'border-b-2 border-b-blue-800 rounded-none text-blue-500'
   userEmail  = signal('')
   isUserLogin  = signal(false)
