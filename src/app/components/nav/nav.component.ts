@@ -1,6 +1,6 @@
 import { Component, OnInit, Signal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SharedService } from '../../services/shared.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class NavComponent implements OnInit  {
   userEmail  = signal('')
   isUserLogin  = signal(false)
 
-  constructor(private shared : SharedService){}
+  constructor(private shared : SharedService, private router: Router){}
   ngOnInit(): void {
     this.getCurrentUser()
   }
@@ -27,6 +27,7 @@ export class NavComponent implements OnInit  {
     this.shared.deleteCookie('userInfo')
     this.userEmail.set('')
     this.isUserLogin  = signal(false)
+    this.router.navigate(['/main'])
   }
 
   getCurrentUser(){
