@@ -9,11 +9,13 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { NotificationComponent } from './pages/notification/notification.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { AccountComponent } from './pages/account/account.component';
+import { ViewTagComponent } from './pages/view-tag/view-tag.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'main', pathMatch: 'full'},
     {path: 'main', component: MainComponent},
     {path: 'view-job/:id', component: ViewJobComponent},
+    {path: 'main/:tag', component: ViewTagComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'access-denied', component: AccessDeniedComponent},

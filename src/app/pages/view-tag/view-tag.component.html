@@ -1,17 +1,16 @@
 <app-nav class="sticky top-0 z-50 "></app-nav>
 <div class="max-w-5xl mx-auto mt-6 px-2 md:px-0 z-30">
-    <app-search-jobs (searchVal)="searchValue($event)"></app-search-jobs>
-    <p class="mt-2">  {{'Entries: ' +  jobsData().length}}</p>
+    <h1 class="text-lg font-semibold">Filter tags | salary <i class="bi bi-funnel-fill text-lg"></i></h1>
     <div class="grid grid-cols-1 lg:grid-cols-2 mt-6 gap-10">
-        @for (job of jobsData(); track $index) {
+        @for (job of jobs(); track $index) {
                 <app-card (click)="navigate(job.id)" class="hover:cursor-pointer">
                     <p id="title">{{job.title}}</p>
                     <span id="company">{{job.company}}</span>
                     <span id="location">{{job.location}}</span>
                     <ul id="tags" class="inline-flex flex-wrap gap-2 text-sm">
-                        <li class="bg-emerald-200 px-2 rounded-full text-emerald-950" (click)="navigateTag(job.salary)">{{job.salary}}</li>
+                        <li class="bg-emerald-200 px-2 rounded-full text-emerald-950">{{job.salary}}</li>
                         @for (tag of job.tags; track $index) {
-                            <li class="bg-emerald-200 px-2 rounded-full text-emerald-950" (click)="navigateTag(tag)">{{tag}}</li>
+                            <li class="bg-emerald-200 px-2 rounded-full text-emerald-950">{{tag}}</li>
                         }
                     </ul>
                     <p id="description" class="text-sm">{{job.description}}</p>

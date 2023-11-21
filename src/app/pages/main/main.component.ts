@@ -4,22 +4,33 @@ import { NavComponent } from '../../components/nav/nav.component';
 import { SearchJobsComponent } from '../../components/search-jobs/search-jobs.component';
 import { CardComponent } from '../../components/card/card.component';
 import { sampleData } from './sampledata';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { CustomDatePipePipe } from '../../services/custom-date-pipe.pipe';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [CommonModule, NavComponent, SearchJobsComponent, CardComponent, RouterModule],
+  imports: [CommonModule, NavComponent, SearchJobsComponent, CardComponent, RouterModule, CustomDatePipePipe],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css', 
 })
 export class MainComponent implements OnInit {
   jobsData : any = signal([])
-  kape = ''
-  constructor(){}
+
+  constructor(public router: Router, public route: ActivatedRoute){}
+
   ngOnInit(): void {
     this.jobsData.set(sampleData)
   }
+
+  navigate(id : string){
+    this.router.navigate(['/view-job/' + id])
+  }
+  navigateTag(tag: string){
+    this.router.navigate(['/main/' + tag])
+    console.log(this.route)
+  }
+
 
   searchValue(val: string){
     const regex = new RegExp(val, 'i')

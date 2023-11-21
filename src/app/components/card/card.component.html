@@ -1,4 +1,4 @@
-<div class="border hover:border-l-2 hover:border-l-emerald-500 rounded p-4 h-[300px] bg-slate-100 overflow-hidden text-justify">
+<div class="border hover:border-l-2 hover:border-l-emerald-500 rounded p-4 h-[300px] bg-slate-100 overflow-hidden text-justify relative">
     <h3 class="text-lg font-semibold"><ng-content select="#title"></ng-content></h3>
     <p class="text-md"><ng-content select="#company"></ng-content></p>
     <p class="text-md"><ng-content select="#location"></ng-content></p>
@@ -16,5 +16,6 @@
     <div class="mt-4">
         <ng-content select="#description"></ng-content>
     </div>
+    <div class="absolute top-0 right-0 m-2"><ng-content select=".time"></ng-content></div>
 </div>
 
