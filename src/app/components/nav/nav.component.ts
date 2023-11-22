@@ -21,8 +21,7 @@ export class NavComponent implements OnInit  {
 
   constructor(private shared : SharedService, private router: Router, private jobFb : JobsService){}
   ngOnInit(): void {
-    // this.getCurrentUser()
-    this.getLoggedUser()
+    this.getCurrentUser()
   }
 
   logOut(){
@@ -39,23 +38,16 @@ export class NavComponent implements OnInit  {
       .catch(err => console.log(err))
   }
 
-  // getCurrentUser(){
-  //   this.shared.getCurrentUser()
-  //     .then((res) =>{
-  //       this.isUserLogin.set(true)
-  //       this.userEmail.set(res.email)
-  //     })
-  //     .catch(err =>{})
-  // }
-  getLoggedUser(){
-    const currentUser = this.jobFb.getCurrentUser()
-    if((currentUser)){
-      console.log(currentUser)
-      this.isUserLogin.set(true)
-      this.userEmail.set(currentUser.email!)
-    }else{
-      console.log('no user')
-    }
+
+
+  getCurrentUser(){
+    this.shared.getCurrentUser()
+      .then((res) =>{
+        this.isUserLogin.set(true)
+        this.userEmail.set(res.email)
+      })
+      .catch(err =>{})
   }
+
 
 }

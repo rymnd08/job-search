@@ -29,6 +29,17 @@ export class SharedService {
     }
   }
 
+  get getUserID(){
+    try{
+      const userInfo = JSON.parse(this.cookie.get('userInfo'))
+      if(userInfo){
+        return userInfo['uid']
+      }
+    }catch(err){
+      // reject('Not login')
+    }
+  }
+
   getCurrentUser(){
     return new Promise<userInfo>((resolve, reject)=>{
       try{
