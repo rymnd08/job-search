@@ -2,6 +2,7 @@ import { Component, OnInit, Signal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { SharedService } from '../../services/shared.service';
+import { JobsService } from '../../services/jobs.service';
 
 @Component({
   selector: 'app-nav',
@@ -18,28 +19,43 @@ export class NavComponent implements OnInit  {
   userEmail  = signal('')
   isUserLogin  = signal(false)
 
-  constructor(private shared : SharedService, private router: Router){}
+  constructor(private shared : SharedService, private router: Router, private jobFb : JobsService){}
   ngOnInit(): void {
-    this.getCurrentUser()
+    // this.getCurrentUser()
+    this.getLoggedUser()
   }
 
   logOut(){
-    setTimeout(()=> {
-      this.shared.deleteCookie('userInfo')
-      this.userEmail.set('')
-      this.isUserLogin  = signal(false)
-      this.showDropdown = false
-      this.router.navigate(['/main'])
-    }, 2000)
+    this.jobFb.signOutUser()
+      .then(()=>{
+        setTimeout(()=> {
+          this.shared.deleteCookie('userInfo')
+          this.userEmail.set('')
+          this.isUserLogin  = signal(false)
+          this.showDropdown = false
+          this.router.navigate(['/main'])
+        }, 2000)
+      })
+      .catch(err => console.log(err))
   }
 
-  getCurrentUser(){
-    this.shared.getCurrentUser()
-      .then((res) =>{
-        this.isUserLogin.set(true)
-        this.userEmail.set(res.email)
-      })
-      .catch(err =>{})
+  // getCurrentUser(){
+  //   this.shared.getCurrentUser()
+  //     .then((res) =>{
+  //       this.isUserLogin.set(true)
+  //       this.userEmail.set(res.email)
+  //     })
+  //     .catch(err =>{})
+  // }
+  getLoggedUser(){
+    const currentUser = this.jobFb.getCurrentUser()
+    if((currentUser)){
+      console.log(currentUser)
+      this.isUserLogin.set(true)
+      this.userEmail.set(currentUser.email!)
+    }else{
+      console.log('no user')
+    }
   }
 
 }
