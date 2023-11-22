@@ -35,7 +35,7 @@
             </li>
             <li class="relative">
                 <button (click)="showDropdown = !showDropdown">
-                    <span [routerLinkActive]="activeClass" class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white px-3 py-1 rounded-full">Account</span>
+                    <span [routerLinkActive]="activeClass" class="hidden md:inline text-blue-800 hover:bg-blue-900 hover:text-white  px-3 py-1 rounded-full peer/span ">Account <i class="bi bi-caret-down-fill text-md peer-hover/span:text-white"></i></span>
                     <i class="bi bi-person-fill-gear text-xl md:hidden text-blue-800 hover:text-blue-500" title="Account" routerLinkActive="text-blue-500"></i>
                 </button>
                 @if(showDropdown){

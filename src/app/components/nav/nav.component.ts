@@ -24,11 +24,13 @@ export class NavComponent implements OnInit  {
   }
 
   logOut(){
-    this.shared.deleteCookie('userInfo')
-    this.userEmail.set('')
-    this.isUserLogin  = signal(false)
-    this.router.navigate(['/main'])
-    this.showDropdown = false
+    setTimeout(()=> {
+      this.shared.deleteCookie('userInfo')
+      this.userEmail.set('')
+      this.isUserLogin  = signal(false)
+      this.showDropdown = false
+      this.router.navigate(['/main'])
+    }, 2000)
   }
 
   getCurrentUser(){
