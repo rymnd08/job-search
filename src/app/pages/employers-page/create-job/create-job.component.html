@@ -1,0 +1,35 @@
+<app-nav-employer></app-nav-employer>
+
+<div class="flex items-center justify-center  mt-8">
+    <div class="w-[375px] md:w-[500px] shadow-md">
+       
+        <form [formGroup]="CreateJobForm" class="p-4 mb-4" (ngSubmit)="handleSubmit()">
+            <h3 class="mb-4 text-xl font-semibold">Create job</h3>
+            <div class="mb-4 ">
+                <label for="" class="block">Title</label>
+                <input type="text" class="w-full focus:outline-none border-b-2 border-b-slate-700 p-1" name="title" formControlName="title">
+            </div>
+            <div class="mb-4">
+                <label for="" class="block">Salary</label>
+                <input type="text" class="w-full focus:outline-none border-b-2 border-b-slate-700 p-1"  name="salary" formControlName="salary">
+            </div>
+            <div class="mb-4">
+                <label for="" class="block mb-1">Tags: <span class="text-sm">Ex. fulltime, engineer, night shift (max: 5)</span></label>
+                <div class="flex gap-2 flex-wrap mb-2">
+                    @for (tag of tags; track $index) {
+                        <span class="bg-slate-300 rounded-full px-3 text-sm">{{tag}} <i class="bi bi-x font-bold" (click)="removeTag(tag)"></i></span>
+                    }
+                </div>
+                <div class="flex flex-nowrap items-end border-b-2 border-b-slate-700">
+                    <input type="text" class="w-full focus:outline-none  p-1" #tagElement>
+                    <button type="button" class="whitespace-nowrap  bg-slate-700 text-sm px-3 py-1 text-white" (click)="addTag(tagElement)">Add Tag</button>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="" class="block mb-2">Job description</label>
+                <textarea type="text" class="w-full focus:outline-none border border-slate-700 focus:border-blue-700 p-2 text-sm rounded"  name="description" formControlName="description"></textarea>
+            </div>
+            <button type="submit" [class]="!CreateJobForm.valid ? 'bg-slate-500 py-1 px-3 text-white w-full rounded' : 'bg-slate-700 py-1 px-3 text-white w-full rounded' " >Save</button>
+        </form>
+    </div>
+</div>

@@ -24,7 +24,7 @@ export class MainComponent implements OnInit {
   }
 
   navigate(id : string){
-    this.router.navigate(['/view-job/' + id])
+    this.router.navigate(['/main/' + id])
   }
   navigateTag(tag: string){
     this.router.navigate(['/main/' + tag])

@@ -2,7 +2,8 @@ import { Injectable, signal } from '@angular/core';
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from '../../assets/environment/environment';
 import { GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, serverTimestamp, getDocs } from 'firebase/firestore'
+import { getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, getDocs } from 'firebase/firestore'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,10 +17,10 @@ export class JobsService {
 
   constructor() { }
 
+  //Firebase Auth
   googleSignIn(){
     return signInWithPopup(this.auth, this.provider)
   }
-
   createAccount(email: string, password: string){
     return createUserWithEmailAndPassword(this.auth, email, password)
   }
@@ -33,9 +34,10 @@ export class JobsService {
   }
 
   signOutUser(){
-    return signOut(this.auth)// Promise
+    return signOut(this.auth)
   }
 
+  //Firestore
   addFirestore(collectionName: string, data: object){
     return addDoc(collection(this.db, collectionName), data)
   } 
@@ -63,10 +65,6 @@ export class JobsService {
     }catch(err){
       return err
     }
-  }
-
-  get timeStamp(){
-    return serverTimestamp()
   }
 
   get jobsData(){

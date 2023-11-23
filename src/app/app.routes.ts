@@ -10,11 +10,13 @@ import { NotificationComponent } from './pages/notification/notification.compone
 import { MessagesComponent } from './pages/messages/messages.component';
 import { AccountComponent } from './pages/account/account.component';
 import { ViewTagComponent } from './pages/view-tag/view-tag.component';
+import { EmployersPageComponent } from './pages/employers-page/employers-page.component';
+import { CreateJobComponent } from './pages/employers-page/create-job/create-job.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'main', pathMatch: 'full'},
     {path: 'main', component: MainComponent},
-    {path: 'view-job/:id', component: ViewJobComponent},
+    {path: 'main/:id', component: ViewJobComponent},
     {path: 'main/:tag', component: ViewTagComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
@@ -22,5 +24,8 @@ export const routes: Routes = [
     {path: 'notif', component: NotificationComponent, canActivate : [authGuard]},
     {path: 'messages', component: MessagesComponent, canActivate : [authGuard]},
     {path: 'account', component: AccountComponent, canActivate : [authGuard]},
+    //empployers pages
+    {path: 'employer-page', component: EmployersPageComponent},
+    {path: 'employer-page/create', component: CreateJobComponent},
     {path: '**', component: PageNotFoundComponent},
 ];

@@ -3,6 +3,13 @@ import { CommonModule } from '@angular/common';
 import { NavComponent } from '../../components/nav/nav.component';
 import { JobsService } from '../../services/jobs.service';
 
+type Jobs = {
+  title: string,
+  addedAt: number,
+  uid: string,
+  skills: string[]
+}
+
 @Component({
   selector: 'app-messages',
   standalone: true,
@@ -11,16 +18,11 @@ import { JobsService } from '../../services/jobs.service';
   styleUrl: './messages.component.css'
 })
 export class MessagesComponent implements OnInit {
-  
-  data = signal([])
-
-  fb = inject(JobsService)
 
   ngOnInit(): void {  
-    this.fb.getCollection("jobs")
-      .then(res => {
-        
-      })
+    
   }
+
+
 
 }
