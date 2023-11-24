@@ -21,12 +21,12 @@ export class ViewTagComponent extends MainComponent implements OnInit {
   data : IJobs[] = []
 
   override ngOnInit(): void {
-    // const params = this.route.snapshot.params['tag']
-    // this.params = params
-    // const filtered = sampleData.filter((job: IJobs) => {
-    //   return job['tags'].includes(params) || job['salary'] == params
-    // });
-    // this.data = [...filtered]
+    const params = this.route.snapshot.params['tag']
+    this.params = params
+    const filtered = sampleData.filter((job: IJobs) => {
+      return job['tags'].includes(params) || job['salary'] == params
+    });
+    this.data = [...filtered]
   }
 
 

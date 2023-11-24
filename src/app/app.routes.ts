@@ -11,13 +11,13 @@ import { AccountComponent } from './pages/account/account.component';
 import { ViewTagComponent } from './pages/view-tag/view-tag.component';
 import { EmployersPageComponent } from './pages/employers-page/employers-page.component';
 import { CreateJobComponent } from './pages/employers-page/create-job/create-job.component';
-import { ViewJobComponent } from './components/view-job/view-job.component';
+import { ViewJobComponent } from './pages/view-job/view-job.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'main', pathMatch: 'full'},
     {path: 'main', component: MainComponent},
     {path: 'main/:id', component: ViewJobComponent },
-    {path: 'main/:tag', component: ViewTagComponent},
+    {path: 'view-tag/:tag', component: ViewTagComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'access-denied', component: AccessDeniedComponent},

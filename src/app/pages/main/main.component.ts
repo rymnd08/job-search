@@ -40,8 +40,8 @@ export class MainComponent implements OnInit {
 
   }
 
-  navigate(id : string){
-    this.router.navigate(['/main/' + id])
+  navigate(route: string, param : string){
+    this.router.navigate([`/${route}/` + param])
   }
   searchValue(val: string){
     const regex = new RegExp(val, 'i')

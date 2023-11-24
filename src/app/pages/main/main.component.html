@@ -6,14 +6,14 @@
     
     <div class="grid grid-cols-1 lg:grid-cols-2 mt-6 gap-10">
         @for (job of jobsData(); track $index) {
-                <app-card (click)="navigate(job.id)" class="hover:cursor-pointer">
+                <app-card (click)="navigate('main' ,job.id)" class="hover:cursor-pointer">
                     <p id="title">{{job.title}}</p>
                     <span id="company">{{job.company}}</span>
                     <span id="location">{{job.location}}</span>
                     <ul id="tags" class="inline-flex flex-wrap gap-2 text-sm">
-                        <li class="bg-emerald-200 px-2 rounded-full text-emerald-950" (click)="navigate(job.salary)">{{job.salary}}</li>
+                        <li class="bg-emerald-200 px-2 rounded-full text-emerald-950" (click)="navigate('view-tag' , job.salary)">{{job.salary}}</li>
                         @for (tag of job.tags; track $index) {
-                            <li class="bg-emerald-200 px-2 rounded-full text-emerald-950" (click)="navigate(tag)">{{tag}}</li>
+                            <li class="bg-emerald-200 px-2 rounded-full text-emerald-950" (click)="navigate('view-tag' ,tag)">{{tag}}</li>
                         }
                     </ul>
                     <p id="description" class="text-sm">{{job.description}}</p>

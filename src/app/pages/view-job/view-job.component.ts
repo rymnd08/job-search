@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavComponent } from '../nav/nav.component';
+import { NavComponent } from '../../components/nav/nav.component';
 import { ActivatedRoute } from '@angular/router';
-import { sampleData } from '../../pages/main/sampledata';
+import { sampleData } from '../main/sampledata';
 import { IJobs } from '../../services/Interface';
 
 @Component({
