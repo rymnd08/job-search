@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from '../../components/nav/nav.component';
 import { SearchJobsComponent } from '../../components/search-jobs/search-jobs.component';
@@ -21,24 +21,35 @@ import { IJobs } from '../../services/Interface';
 export class MainComponent implements OnInit {
   sampleData = sampleData
   jobsData : WritableSignal<IJobs[]> = signal([])
-
-  startingItem = 0
+  paginateData : IJobs[] = []
   itemsPerPage = 4
-
+  page = 0
+  totalPage = 0
   constructor(public router: Router, public route: ActivatedRoute){}
 
   ngOnInit(): void {
-    this.jobsData.set(this.sampleData)
-    this.paginate(this.sampleData, 5)
+    const arr = this.paginate(this.sampleData, this.itemsPerPage)
+    this.jobsData.set(arr[this.page])
+    this.totalPage = Math.ceil(this.sampleData.length / this.itemsPerPage)
   }
 
   prevPage(){
+    if(this.page === 0) return 
 
+    const arr = this.paginate(this.sampleData, this.itemsPerPage)
+    console.log(arr[0])
+    this.page = this.page - 1 
+    this.jobsData.set(arr[this.page])
   }
 
   nextPage(){
+    if(this.page+1 === this.totalPage) return
 
+    const arr = this.paginate(this.sampleData, this.itemsPerPage)
+    this.page = this.page + 1
+    this.jobsData.set(arr[this.page])
   }
+
 
   navigate(route: string, param : string){
     this.router.navigate([`/${route}/` + param])
@@ -53,9 +64,7 @@ export class MainComponent implements OnInit {
       regex.test(obj['tags'].toString()) || 
       regex.test(obj['location'])
     })
-    this.startingItem = 0
-    this.itemsPerPage = 4
-    this.jobsData.set(filtered.slice(this.startingItem , this.itemsPerPage))
+
   }
   paginate(arr: IJobs[], numOfPages: number){
     const pages = numOfPages

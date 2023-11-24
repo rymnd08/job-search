@@ -33,9 +33,9 @@
         }
     </div>
     <div class="mb-24 mt-10 flex justify-evenly gap-4">
-        <button [disabled]="startingItem === 0" [class]="startingItem === 0 ? 'bg-slate-300 text-white py-1 px-3 rounded' : 'bg-indigo-500 text-white py-1 px-3 rounded' " 
+        <button [disabled]="page === 0" [class]="page === 0 ? 'bg-slate-300 text-white py-1 px-3 rounded' : 'bg-indigo-500 text-white py-1 px-3 rounded' " 
         (click)="prevPage()"><i class="bi bi-arrow-left"></i> Prev</button>
-        <button [class]="itemsPerPage >= sampleData.length ? 'bg-indigo-300 text-white py-1 px-3 rounded' : 'bg-indigo-500 text-white py-1 px-3 rounded' " 
+        <button [class]="page+1 === totalPage ? 'bg-indigo-300 text-white py-1 px-3 rounded' : 'bg-indigo-500 text-white py-1 px-3 rounded' " 
         (click)="nextPage()">Next <i class="bi bi-arrow-right"></i></button>
     </div>
     
