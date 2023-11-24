@@ -1,7 +1,9 @@
 <app-nav class="sticky top-0 z-50 "></app-nav>
 <div class="max-w-5xl mx-auto mt-6 px-2 md:px-0 z-30">
     <app-search-jobs (searchVal)="searchValue($event)"></app-search-jobs>
-    <p class="mt-2">  {{'Entries: ' +  jobsData().length}}</p>
+    <p class="mt-2">  {{'Entries: ' +  sampleData.length}}</p>
+
+    
     <div class="grid grid-cols-1 lg:grid-cols-2 mt-6 gap-10">
         @for (job of jobsData(); track $index) {
                 <app-card (click)="navigate(job.id)" class="hover:cursor-pointer">
@@ -9,14 +11,15 @@
                     <span id="company">{{job.company}}</span>
                     <span id="location">{{job.location}}</span>
                     <ul id="tags" class="inline-flex flex-wrap gap-2 text-sm">
-                        <li class="bg-emerald-200 px-2 rounded-full text-emerald-950" (click)="navigateTag(job.salary)">{{job.salary}}</li>
+                        <li class="bg-emerald-200 px-2 rounded-full text-emerald-950" (click)="navigate(job.salary)">{{job.salary}}</li>
                         @for (tag of job.tags; track $index) {
-                            <li class="bg-emerald-200 px-2 rounded-full text-emerald-950" (click)="navigateTag(tag)">{{tag}}</li>
+                            <li class="bg-emerald-200 px-2 rounded-full text-emerald-950" (click)="navigate(tag)">{{tag}}</li>
                         }
                     </ul>
                     <p id="description" class="text-sm">{{job.description}}</p>
                     <small class="time">{{job.postedDate | customDatePipe}} <i class="bi bi-clock-fill text-gray-800"></i></small>
                 </app-card>
+
         }
         @empty {
             <div class=" border mx-2 lg:mx-0 bg-slate-100 p-4">
@@ -29,4 +32,11 @@
             </div>
         }
     </div>
+    <div class="mb-24 mt-10 flex justify-evenly gap-4">
+        <button [disabled]="startingItem === 0" [class]="startingItem === 0 ? 'bg-slate-300 text-white py-1 px-3 rounded' : 'bg-indigo-500 text-white py-1 px-3 rounded' " 
+        (click)="prevPage()"><i class="bi bi-arrow-left"></i> Prev</button>
+        <button [class]="itemsPerPage >= sampleData.length ? 'bg-indigo-300 text-white py-1 px-3 rounded' : 'bg-indigo-500 text-white py-1 px-3 rounded' " 
+        (click)="nextPage()">Next <i class="bi bi-arrow-right"></i></button>
+    </div>
+    
 </div>

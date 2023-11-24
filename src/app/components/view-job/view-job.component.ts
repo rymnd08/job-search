@@ -1,8 +1,9 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from '../nav/nav.component';
 import { ActivatedRoute } from '@angular/router';
 import { sampleData } from '../../pages/main/sampledata';
+import { IJobs } from '../../services/Interface';
 
 @Component({
   selector: 'app-view-job',
@@ -12,26 +13,22 @@ import { sampleData } from '../../pages/main/sampledata';
   styleUrl: './view-job.component.css'
 })
 export class ViewJobComponent implements OnInit {
+  jobData! : IJobs 
+  
+  constructor(private route : ActivatedRoute){}
 
-  jobData : any
-  route = inject(ActivatedRoute)
   ngOnInit(): void {
-
     this.getParams()
   }
 
   getParams(){
-    let params = ''
-
     this.route.url.subscribe(url =>{
-      console.log(url[1].path)
-      params = url[1].path
+      const params = url[1].path
+      const data = sampleData.filter(job =>{
+        return job['id'] === params
+      })
+      this.jobData = data[0]
     })
-
-    const data = sampleData.filter(job =>{
-      return job['id'] === params
-    })
-
-    this.jobData = data[0]
   }
+
 }

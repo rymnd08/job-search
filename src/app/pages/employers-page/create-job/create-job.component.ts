@@ -14,7 +14,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class CreateJobComponent implements OnInit{
   tags : string[] = []
   CreateJobForm! : FormGroup
-
+  
   constructor(private fb: FormBuilder){}
 
 
