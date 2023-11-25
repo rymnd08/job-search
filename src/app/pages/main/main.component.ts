@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from '../../components/nav/nav.component';
 import { SearchJobsComponent } from '../../components/search-jobs/search-jobs.component';
@@ -19,53 +19,71 @@ import { IJobs } from '../../services/Interface';
 })
 
 export class MainComponent implements OnInit {
+
   sampleData = sampleData
   jobsData : WritableSignal<IJobs[]> = signal([])
-  paginateData : IJobs[] = []
-  itemsPerPage = 4
+
+  //pagination controls
+  paginateData : any
+  itemsPerPage = 6
   page = 0
   totalPage = 0
+  jobResults? : number
+
   constructor(public router: Router, public route: ActivatedRoute){}
 
   ngOnInit(): void {
-    const arr = this.paginate(this.sampleData, this.itemsPerPage)
-    this.jobsData.set(arr[this.page])
+    this.paginateData = this.paginate(this.sampleData, this.itemsPerPage)
+    this.jobsData.set(this.paginateData[this.page])
     this.totalPage = Math.ceil(this.sampleData.length / this.itemsPerPage)
   }
 
   prevPage(){
     if(this.page === 0) return 
 
-    const arr = this.paginate(this.sampleData, this.itemsPerPage)
-    console.log(arr[0])
     this.page = this.page - 1 
-    this.jobsData.set(arr[this.page])
+    this.jobsData.set(this.paginateData[this.page])
   }
 
   nextPage(){
     if(this.page+1 === this.totalPage) return
 
-    const arr = this.paginate(this.sampleData, this.itemsPerPage)
     this.page = this.page + 1
-    this.jobsData.set(arr[this.page])
+    this.jobsData.set(this.paginateData[this.page])
   }
 
 
   navigate(route: string, param : string){
     this.router.navigate([`/${route}/` + param])
   }
-  searchValue(val: string){
-    const regex = new RegExp(val, 'i')
-    const filtered = this.sampleData.filter((obj: IJobs) =>{
-      return regex.test(obj['title']) || 
-      regex.test(obj['company']) || 
-      regex.test(obj['salary']) || 
-      regex.test(obj['description']) || 
-      regex.test(obj['tags'].toString()) || 
-      regex.test(obj['location'])
-    })
 
+  handleSearch(val: string){
+    this.page = 0
+    const regex = new RegExp(val, 'i')
+
+    if(val === ''){
+      console.log('empty')
+
+      this.paginateData = this.paginate(this.sampleData, this.itemsPerPage)
+      this.jobsData.set(this.paginateData[this.page])
+      this.totalPage = Math.ceil(this.sampleData.length / this.itemsPerPage)
+    }
+    else{
+        const  filtered =  this.sampleData.filter((obj: IJobs) =>{
+        return regex.test(obj['title']) || 
+        regex.test(obj['company']) || 
+        regex.test(obj['salary']) || 
+        regex.test(obj['description']) || 
+        regex.test(obj['tags'].toString()) || 
+        regex.test(obj['location'])
+      })
+
+      this.paginateData = this.paginate(filtered, this.itemsPerPage)
+      this.jobsData.set(this.paginateData[this.page])
+      this.totalPage = Math.ceil(filtered.length / this.itemsPerPage)
+    }
   }
+
   paginate(arr: IJobs[], numOfPages: number){
     const pages = numOfPages
     const pagesArr = []

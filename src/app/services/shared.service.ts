@@ -7,6 +7,8 @@ import { userInfo } from './IuserInfo';
 })
 export class SharedService {
 
+  searchVal = signal('')
+
   constructor(private cookie : CookieService) {}
 
   setCookie(key : string, value : string){

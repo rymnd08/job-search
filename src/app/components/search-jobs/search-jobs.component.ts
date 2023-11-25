@@ -1,6 +1,6 @@
-import { Component, Output, signal } from '@angular/core';
+import { Component, EventEmitter, Output, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EventEmitter } from '@angular/core';
+
 @Component({
   selector: 'app-search-jobs',
   standalone: true,
