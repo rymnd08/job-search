@@ -25,7 +25,7 @@ export class MainComponent implements OnInit {
 
   //pagination controls
   paginateData : any
-  itemsPerPage = 6
+  itemsPerPage = 10
   page = 0
   totalPage = 0
   jobResults? : number
