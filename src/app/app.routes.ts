@@ -25,7 +25,7 @@ export const routes: Routes = [
     {path: 'messages', component: MessagesComponent, canActivate : [authGuard]},
     {path: 'account', component: AccountComponent, canActivate : [authGuard]},
     //empployers pages
-    {path: 'employer-page', component: EmployersPageComponent},
-    {path: 'employer-page/create', component: CreateJobComponent},
+    {path: 'employer-page', component: PageNotFoundComponent},
+    {path: 'employer-page/create', component: PageNotFoundComponent},
     {path: '**', component: PageNotFoundComponent},
 ];

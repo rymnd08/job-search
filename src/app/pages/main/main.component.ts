@@ -15,7 +15,8 @@ import { IJobs } from '../../services/Interface';
   standalone: true,
   imports: [CommonModule, NavComponent, SearchJobsComponent, CardComponent, RouterModule, CustomDatePipePipe, FormsModule, ],
   templateUrl: './main.component.html',
-  styleUrl: './main.component.css', 
+  styleUrl: './main.component.css',
+  
 })
 
 export class MainComponent implements OnInit {
@@ -24,17 +25,18 @@ export class MainComponent implements OnInit {
   jobsData : WritableSignal<IJobs[]> = signal([])
 
   //pagination controls
-  paginateData : any
+  paginateData! : IJobs[][]
   itemsPerPage = 10
   page = 0
   totalPage = 0
   jobResults? : number
 
-  constructor(public router: Router, public route: ActivatedRoute){}
+  constructor(public router: Router, public route: ActivatedRoute ){}
 
   ngOnInit(): void {
     this.paginateData = this.paginate(this.sampleData, this.itemsPerPage)
     this.jobsData.set(this.paginateData[this.page])
+    this.jobResults = this.sampleData.length
     this.totalPage = Math.ceil(this.sampleData.length / this.itemsPerPage)
   }
 
@@ -66,6 +68,7 @@ export class MainComponent implements OnInit {
 
       this.paginateData = this.paginate(this.sampleData, this.itemsPerPage)
       this.jobsData.set(this.paginateData[this.page])
+      this.jobResults = this.sampleData.length
       this.totalPage = Math.ceil(this.sampleData.length / this.itemsPerPage)
     }
     else{
@@ -80,6 +83,7 @@ export class MainComponent implements OnInit {
 
       this.paginateData = this.paginate(filtered, this.itemsPerPage)
       this.jobsData.set(this.paginateData[this.page])
+      this.jobResults = filtered.length
       this.totalPage = Math.ceil(filtered.length / this.itemsPerPage)
     }
   }

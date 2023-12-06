@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-employers-page',
   standalone: true,
-  imports: [CommonModule, NavEmployerComponent, RouterModule],
+  imports: [CommonModule, NavEmployerComponent, RouterModule, ],
   templateUrl: './employers-page.component.html',
   styleUrl: './employers-page.component.css'
 })
